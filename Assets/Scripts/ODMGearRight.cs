@@ -34,11 +34,13 @@ public class ODMGearRight : MonoBehaviour
 
     [Header("Swinging")]
     public float maxSwingDistance = 100f;
-    private Vector3 swingPoint;
+    public Vector3 swingPoint;
     private SpringJoint joint;
 
     private ODMGearLeft leftGearScript;
-    private bool canDrawRope;
+    public bool canDrawRope;
+    private ODMMovement odmMovement;
+
 
     void Awake()
     {
@@ -49,15 +51,19 @@ public class ODMGearRight : MonoBehaviour
     {
         leftGearScript = leftGear.GetComponent<ODMGearLeft>();
         pm = player.GetComponent<MovementNew>();
+        odmMovement = player.GetComponent<ODMMovement>();
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(grappleKey)) startSwing();
 
-        if (Input.GetKeyUp(grappleKey) && swingingRight)
+        if (Input.GetKeyUp(grappleKey))
         {
             stopSwing();
+            if (swingingRight) odmMovement.pullToPoint();
+
         }
 
         CheckForGrapplePoint();
@@ -100,8 +106,9 @@ public class ODMGearRight : MonoBehaviour
 
         Destroy(joint);
         joint = null;
-        canDrawRope = false;
-        pm.isSwingingRight = false;
+
+        // canDrawRope = false;
+        // pm.isSwingingRight = false;
 
     }
 

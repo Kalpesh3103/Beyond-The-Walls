@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.578367, g: 0.61572725, b: 0.608778, a: 1}
+  m_IndirectSpecularColor: {r: 0.57836705, g: 0.61572725, b: 0.60877764, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1500,6 +1500,8 @@ MonoBehaviour:
   predictionSphereRadius: 3
   predictionPoint: {fileID: 2109856089}
   maxSwingDistance: 100
+  swingPoint: {x: 0, y: 0, z: 0}
+  canDrawRope: 0
 --- !u!1 &1901492580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,6 +1858,8 @@ MonoBehaviour:
   predictionSphereRadius: 3
   predictionPoint: {fileID: 2045851490}
   maxSwingDistance: 100
+  swingPoint: {x: 0, y: 0, z: 0}
+  canDrawRope: 0
 --- !u!1 &1975153509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +2401,7 @@ GameObject:
   - component: {fileID: 2112007545}
   - component: {fileID: 2112007547}
   - component: {fileID: 2112007549}
+  - component: {fileID: 2112007550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2597,6 +2602,21 @@ MonoBehaviour:
   isSwingingLeft: 0
   isSwingingRight: 0
   isSliding: 0
+--- !u!114 &2112007550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112007541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8d514930f2e2a47a3b7a9b8243b6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftGear: {fileID: 1922363999}
+  rightGear: {fileID: 1886896974}
+  pullForce: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

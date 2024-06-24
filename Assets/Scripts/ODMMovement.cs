@@ -56,6 +56,8 @@ public class ODMMovement : MonoBehaviour
         Vector3 direction = pullPoint - transform.position;
 
         Vector3 directionToPoint = (pullPoint - transform.position).normalized * newForce;
+        directionToPoint.y += 10f * Time.deltaTime; //adding upward force;
+
         rb.AddForce(directionToPoint, ForceMode.Impulse);
         // rb.velocity = directionToPoint;
         // float velocity = rb.velocity.magnitude;

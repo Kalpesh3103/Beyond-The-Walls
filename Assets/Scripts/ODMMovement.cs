@@ -7,6 +7,7 @@ public class ODMMovement : MonoBehaviour
     [Header("References")]
     public Transform leftGear;
     public Transform rightGear;
+    public Camera cam;
 
     public float pullForce = 100f;
 
@@ -15,6 +16,14 @@ public class ODMMovement : MonoBehaviour
     private ODMGearLeft leftGearScript;
     private ODMGearRight rightgearScript;
     private Vector3 pullPoint;
+
+    private float defaultFov = 80f;
+    private float targetFov = 100f;
+    public float duration = 1.0f; // Duration of the transition
+
+    private Coroutine currentCoroutine;
+    private float velocity = 0.0f;
+    public float smoothTime = 0.3f; // Smoothing duration
 
     private void Start()
     {
@@ -27,6 +36,11 @@ public class ODMMovement : MonoBehaviour
 
     public void pullToPoint()
     {
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(ChangeFOV(cam.fieldOfView, targetFov, duration));
         float newForce = 0f;
         Debug.Log("Pulling to point");
 
@@ -86,6 +100,37 @@ public class ODMMovement : MonoBehaviour
 
         rightgearScript.canDrawRope = false;
         pm.isSwingingRight = false;
+
+
+
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+        currentCoroutine = StartCoroutine(ChangeFOV(cam.fieldOfView, defaultFov, duration));
     }
 
+
+    private IEnumerator ChangeFOV(float fromFOV, float toFOV, float duration)
+    {
+
+
+        //  float elapsed = 0f;
+        // while (elapsed < duration)
+        // {
+        //     cam.fieldOfView = Mathf.Lerp(fromFOV, toFOV, elapsed / duration);
+        //     elapsed += Time.deltaTime;
+        //     yield return null;
+        // }
+        // cam.fieldOfView = toFOV; // Ensure the final value is set
+
+        float currentFOV = fromFOV;
+        while (Mathf.Abs(currentFOV - toFOV) > 0.01f)
+        {
+            currentFOV = Mathf.SmoothDamp(currentFOV, toFOV, ref velocity, smoothTime);
+            cam.fieldOfView = currentFOV;
+            yield return null;
+        }
+        cam.fieldOfView = toFOV; // Ensure the final value is set
+    }
 }

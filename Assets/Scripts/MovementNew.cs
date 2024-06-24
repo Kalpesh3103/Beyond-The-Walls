@@ -53,6 +53,11 @@ public class MovementNew : MonoBehaviour
         }
 
         if (!isGrounded) OdmMovement();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            gameObject.transform.position = new Vector3(0f, 1.79f, 0f);
+        }
     }
 
     private void FixedUpdate()

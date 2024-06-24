@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.57836705, g: 0.61572725, b: 0.60877764, a: 1}
+  m_IndirectSpecularColor: {r: 0.5783664, g: 0.61572677, b: 0.60877776, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGear: {fileID: 1922363999}
   rightGear: {fileID: 1886896974}
-  pullForce: 50
+  pullForce: 120
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

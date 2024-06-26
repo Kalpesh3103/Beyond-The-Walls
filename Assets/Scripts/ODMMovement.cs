@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class ODMMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ODMMovement : MonoBehaviour
     public Transform leftGear;
     public Transform rightGear;
     public Camera cam;
+    public VisualEffect speedEffect;
+
 
     public float pullForce = 100f;
 
@@ -27,6 +30,7 @@ public class ODMMovement : MonoBehaviour
 
     private void Start()
     {
+        speedEffect.Stop();
         pm = transform.GetComponent<MovementNew>();
         rb = transform.GetComponent<Rigidbody>();
         leftGearScript = leftGear.GetComponent<ODMGearLeft>();
@@ -36,6 +40,7 @@ public class ODMMovement : MonoBehaviour
 
     public void pullToPoint()
     {
+        speedEffect.Play();
         if (currentCoroutine != null)
         {
             StopCoroutine(currentCoroutine);
@@ -95,6 +100,7 @@ public class ODMMovement : MonoBehaviour
 
     private void stopPulling()
     {
+        speedEffect.Stop();
         leftGearScript.canDrawRope = false;
         pm.isSwingingLeft = false;
 
